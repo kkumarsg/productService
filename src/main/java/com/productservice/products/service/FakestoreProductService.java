@@ -1,6 +1,5 @@
 package com.productservice.products.service;
 
-import com.productservice.products.dtos.ProductRequestDtoFS;
 import com.productservice.products.dtos.ProductResponseDtoFS;
 import com.productservice.products.exceptions.ProductNotPresentException;
 import com.productservice.products.models.Category;
@@ -55,7 +54,7 @@ public class FakestoreProductService implements IProductService{
         Product product = new Product();
         product.setId(response.getId());
         product.setName(response.getTitle());
-        product.setDescription(response.getDescription());
+        product.setDescr(response.getDescription());
         product.setPrice(response.getPrice());
         product.setCategory(new Category());
         product.getCategory().setName(response.getCategory());

@@ -1,0 +1,7 @@
+create table category (id bigint not null auto_increment, name varchar(255), primary key (id)) engine=InnoDB;
+create table mp_instructor (id bigint not null auto_increment, email varchar(255), name varchar(255), password varchar(255), specialization varchar(255), primary key (id)) engine=InnoDB;
+create table mp_mentor (avg_rating float(23) not null, id bigint not null auto_increment, company varchar(255), email varchar(255), name varchar(255), password varchar(255), primary key (id)) engine=InnoDB;
+create table mp_ta (avg_rating float(23) not null, no_of_session integer not null, id bigint not null auto_increment, email varchar(255), name varchar(255), password varchar(255), primary key (id)) engine=InnoDB;
+create table product (price float(23) not null, category_id bigint, id bigint not null auto_increment, description varchar(255), image varchar(255), name varchar(255), primary key (id)) engine=InnoDB;
+create table st_user (avg_rating float(23), no_of_session integer, user_type integer not null, id bigint not null auto_increment, company varchar(255), email varchar(255), name varchar(255), password varchar(255), specialization varchar(255), primary key (id)) engine=InnoDB;
+alter table product add constraint FK1mtsbur82frn64de7balymq9s foreign key (category_id) references category (id);
