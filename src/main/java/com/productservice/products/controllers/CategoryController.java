@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 public class CategoryController {
 
@@ -16,8 +18,8 @@ public class CategoryController {
     CategoryRepository categoryRepository;
 
     @GetMapping("/category")
-    public Category getCategory(){
+    public Optional<Category> getCategory(){
 
-        return null;
+        return categoryRepository.findById(1L);
     }
 }

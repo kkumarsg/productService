@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class ProductController {
@@ -27,7 +28,11 @@ public class ProductController {
     @GetMapping("/products")
     public List<Product> getAllProducts(){
 
-        return productService.getAllProducts();
+        return productService.getAllProducts()
+                .stream()
+                .filter(product -> product.getName().startsWith("A"))
+                .collect(Collectors.toList());
+
     }
 
     @GetMapping("/products/search")
@@ -69,10 +74,12 @@ public class ProductController {
         return new ArrayList<>();
     }
 
+
+
     @GetMapping("/products/category/{id}")
     public List<Product> getAllProductsInCategory(@PathVariable("id") Long id){
 
-        return new ArrayList<>();
+        return productService.getAllProducts();
     }
 
     @PostMapping("/products")
