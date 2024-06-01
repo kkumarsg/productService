@@ -1,5 +1,6 @@
 package com.productservice.products.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
@@ -16,5 +17,6 @@ public class Product extends BaseModel{
     private float price;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Category category;
 }

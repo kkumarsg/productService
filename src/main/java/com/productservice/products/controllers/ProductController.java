@@ -8,6 +8,9 @@ import com.productservice.products.models.Product;
 import com.productservice.products.repositories.ProductRepository;
 import com.productservice.products.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +29,16 @@ public class ProductController {
     ProductRepository productRepository;
 
     @GetMapping("/products")
-    public List<Product> getAllProducts(){
+    public Page<Product> getAllProducts(
+            @RequestParam("pageNo") int pageNo,
+            @RequestParam("pageSize") int pageSize,
+            @RequestParam("sortBy") String sortBy
+    ){
 
-        return productService.getAllProducts()
-                .stream()
-                .filter(product -> product.getName().startsWith("A"))
-                .collect(Collectors.toList());
+        // please create another service for product repo interaction.
+        return productRepository.findAll(
+                PageRequest.of(pageNo, pageSize,
+                        Sort.by("name")));
 
     }
 
